@@ -1,0 +1,11 @@
+#root {
+  margin: 0;
+  padding: 0;
+}
+.cursor-pointer {
+  cursor: pointer;
+  opacity: 0.6;
+}
+.active {
+  opacity: 1;
+}
