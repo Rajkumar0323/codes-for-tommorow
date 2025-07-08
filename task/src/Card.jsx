@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 const Card = ({ cardData, deleteCard }) => {
   const date = new Date();
-  // console.log(date);
   let day = date.getDate();
-  let month = date.getMonth() + 1; // Months are zero-based in JavaScript
+  let month = date.getMonth() + 1;
   let year = date.getFullYear();
 
   const title = cardData.title.slice(0, 100);
@@ -21,7 +20,6 @@ const Card = ({ cardData, deleteCard }) => {
       <h6>{title}...</h6>
       <p>{str}...</p>
       <span className="opacity-25">{date.toUTCString()}</span>
-      {/* <img src="#" alt="This is for sample" /> */}
     </div>
   );
 };

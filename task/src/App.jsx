@@ -2,34 +2,24 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "./Card";
 import "./App.css";
+import { useCardContext } from "./context/CardContext";
 
 function App() {
-  const [cardsData, setCardsData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  async function fetchCArds() {
-    try {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts"
-      );
-      if (response.status >= 200 && response.status < 300) {
-        setCardsData(response.data);
-        console.log("Cards data fetched successfully:", response.data);
-      }
-    } catch (error) {
-      console.error("Error fetching cards data:", error);
-    }
-  }
-  const deleteCard = (id) => {
-    setCardsData(cardsData.filter((card) => card.id !== id));
-  };
+  const {
+    cardsData,
+    setCardsData,
+    loading,
+    setLoading,
+    deleteCard,
+    totalPages,
+    pages,
+  } = useCardContext();
+
   useEffect(() => {
-    fetchCArds();
     setTimeout(() => {
       setLoading(false);
     }, 5000);
   }, []);
-  const totalePages = cardsData.length / 6;
-  const pages = Array.from({ length: Math.ceil(totalePages) }, (_, i) => i + 1);
   const [currentPage, setCurrentPage] = useState(1);
   const handlePageChange = (page) => {
     setCurrentPage(page);
